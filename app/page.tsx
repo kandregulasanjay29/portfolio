@@ -190,16 +190,16 @@ export default function Portfolio() {
       )}
 
       {/* Navigation */}
-      <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-40">
+      <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 z-40 w-full max-w-7xl px-4">
         <div
-          className={`px-6 py-3 rounded-full backdrop-blur-md border transition-all duration-300 ${
+          className={`mx-auto px-4 md:px-6 py-3 rounded-full backdrop-blur-md border transition-all duration-300 ${
             isDarkMode ? "bg-slate-900/80 border-slate-700/50" : "bg-white/80 border-slate-200/50"
           }`}
         >
-          <div className="flex items-center space-x-8">
+          <div className="flex items-center justify-between">
             {/* Logo */}
             <div
-              className="flex items-center space-x-2"
+              className="hidden md:flex items-center space-x-2"
               onMouseEnter={() => handleMouseEnter("Sanjay's Portfolio")}
               onMouseLeave={handleMouseLeave}
             >
@@ -222,8 +222,8 @@ export default function Portfolio() {
               </span>
             </div>
 
-            {/* Navigation Links */}
-            <div className="flex space-x-6">
+            {/* Desktop Navigation Links */}
+            <div className="hidden lg:flex space-x-6">
               {[
                 { id: "home", label: "Home" },
                 { id: "about", label: "About" },
@@ -245,6 +245,32 @@ export default function Portfolio() {
                       : isDarkMode
                         ? "text-slate-300 hover:text-blue-400"
                         : "text-slate-600 hover:text-blue-600"
+                  }`}
+                >
+                  {section.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile Navigation Links */}
+            <div className="flex lg:hidden space-x-2">
+              {[
+                { id: "home", label: "Home" },
+                { id: "about", label: "About" },
+                { id: "skills", label: "Skills" },
+                { id: "projects", label: "Projects" },
+              ].map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
+                  className={`px-2 py-1 rounded-full text-xs font-medium transition-all duration-300 ${
+                    activeSection === section.id
+                      ? isDarkMode
+                        ? "bg-blue-500/20 text-blue-400"
+                        : "bg-blue-100 text-blue-700"
+                      : isDarkMode
+                        ? "text-slate-300"
+                        : "text-slate-600"
                   }`}
                 >
                   {section.label}
@@ -285,10 +311,10 @@ export default function Portfolio() {
           ></div>
         </div>
 
-        <div className="container mx-auto px-6 text-center relative z-10">
+        <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <div className="max-w-4xl mx-auto">
             <h1
-              className={`text-6xl md:text-8xl font-bold mb-6 transition-all duration-500 ${
+              className={`text-4xl md:text-6xl lg:text-8xl font-bold mb-4 md:mb-6 transition-all duration-500 ${
                 isDarkMode
                   ? "bg-gradient-to-r from-blue-400 via-indigo-500 to-blue-600 bg-clip-text text-transparent"
                   : "bg-gradient-to-r from-blue-600 via-indigo-700 to-blue-800 bg-clip-text text-transparent"
@@ -299,23 +325,25 @@ export default function Portfolio() {
               Sanjay Kandregula
             </h1>
 
-            <p className={`text-2xl md:text-3xl mb-4 font-light ${isDarkMode ? "text-slate-300" : "text-slate-700"}`}>
+            <p
+              className={`text-lg md:text-2xl lg:text-3xl mb-3 md:mb-4 font-light ${isDarkMode ? "text-slate-300" : "text-slate-700"}`}
+            >
               Full Stack Developer
             </p>
 
             <div
-              className={`flex items-center justify-center space-x-2 mb-8 ${
+              className={`flex items-center justify-center space-x-2 mb-6 md:mb-8 ${
                 isDarkMode ? "text-slate-400" : "text-slate-600"
               }`}
               onMouseEnter={() => handleMouseEnter("Based in Hyderabad, India")}
               onMouseLeave={handleMouseLeave}
             >
-              <MapPin className="w-5 h-5" />
-              <span>Hyderabad, India</span>
+              <MapPin className="w-4 h-4 md:w-5 md:h-5" />
+              <span className="text-sm md:text-base">Hyderabad, India</span>
             </div>
 
             <p
-              className={`text-lg mb-12 max-w-3xl mx-auto leading-relaxed font-light ${
+              className={`text-sm md:text-lg mb-8 md:mb-12 max-w-2xl lg:max-w-3xl mx-auto leading-relaxed font-light px-4 ${
                 isDarkMode ? "text-slate-300" : "text-slate-600"
               }`}
             >
@@ -324,18 +352,18 @@ export default function Portfolio() {
               learning in the ever-evolving tech landscape.
             </p>
 
-            <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center px-4">
               <Button
                 size="lg"
                 onMouseEnter={() => handleMouseEnter("Download my resume")}
                 onMouseLeave={handleMouseLeave}
-                className={`px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 ${
+                className={`w-full sm:w-auto px-6 md:px-8 py-2 md:py-3 rounded-full transition-all duration-300 transform hover:scale-105 ${
                   isDarkMode
                     ? "bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white"
                     : "bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white"
                 } shadow-lg hover:shadow-xl`}
               >
-                <Download className="w-5 h-5 mr-2" />
+                <Download className="w-4 h-4 md:w-5 md:h-5 mr-2" />
                 Download Resume
               </Button>
 
@@ -344,21 +372,21 @@ export default function Portfolio() {
                   href="https://github.com/sanjaykandregula"
                   onMouseEnter={() => handleMouseEnter("View my GitHub")}
                   onMouseLeave={handleMouseLeave}
-                  className={`p-3 rounded-full transition-all duration-300 transform hover:scale-110 ${
+                  className={`p-2 md:p-3 rounded-full transition-all duration-300 transform hover:scale-110 ${
                     isDarkMode ? "bg-slate-800/50 hover:bg-slate-700/50" : "bg-white/50 hover:bg-white/80"
                   } backdrop-blur-sm shadow-lg hover:shadow-xl`}
                 >
-                  <Github className="w-6 h-6" />
+                  <Github className="w-5 h-5 md:w-6 md:h-6" />
                 </Link>
                 <Link
                   href="https://linkedin.com/in/sanjaykandregula"
                   onMouseEnter={() => handleMouseEnter("Connect on LinkedIn")}
                   onMouseLeave={handleMouseLeave}
-                  className={`p-3 rounded-full transition-all duration-300 transform hover:scale-110 ${
+                  className={`p-2 md:p-3 rounded-full transition-all duration-300 transform hover:scale-110 ${
                     isDarkMode ? "bg-slate-800/50 hover:bg-slate-700/50" : "bg-white/50 hover:bg-white/80"
                   } backdrop-blur-sm shadow-lg hover:shadow-xl`}
                 >
-                  <Linkedin className="w-6 h-6" />
+                  <Linkedin className="w-5 h-5 md:w-6 md:h-6" />
                 </Link>
               </div>
             </div>
@@ -388,7 +416,7 @@ export default function Portfolio() {
               onMouseLeave={handleMouseLeave}
             >
               <CardContent className="p-8">
-                <p className={`text-lg leading-relaxed ${isDarkMode ? "text-slate-300" : "text-slate-600"}`}>
+                <p className={`text-sm md:text-lg leading-relaxed ${isDarkMode ? "text-slate-300" : "text-slate-600"}`}>
                   I'm a passionate full stack developer who believes in the power of technology to solve real-world
                   problems. With over 2 years of hands-on experience, I've had the privilege of working on diverse
                   projects that have shaped my understanding of both frontend and backend development. My journey in
@@ -427,22 +455,28 @@ export default function Portfolio() {
               onMouseEnter={() => handleMouseEnter("My educational background")}
               onMouseLeave={handleMouseLeave}
             >
-              <CardContent className="p-8">
-                <div className="flex items-start space-x-4">
-                  <div className={`p-3 rounded-full ${isDarkMode ? "bg-blue-500/20" : "bg-blue-100"}`}>
+              <CardContent className="p-6 md:p-8">
+                <div className="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-4">
+                  <div
+                    className={`flex-shrink-0 p-3 rounded-full self-start ${isDarkMode ? "bg-blue-500/20" : "bg-blue-100"}`}
+                  >
                     <GraduationCap className={`w-6 h-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
                   </div>
-                  <div className="flex-1">
-                    <h3 className={`text-2xl font-semibold mb-2 ${isDarkMode ? "text-white" : "text-slate-900"}`}>
+                  <div className="flex-1 min-w-0">
+                    <h3
+                      className={`text-xl md:text-2xl font-semibold mb-2 ${isDarkMode ? "text-white" : "text-slate-900"}`}
+                    >
                       Bachelor of Technology
                     </h3>
-                    <p className={`text-lg mb-1 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`}>
+                    <p className={`text-base md:text-lg mb-1 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`}>
                       Computer Science Engineering
                     </p>
-                    <p className={`${isDarkMode ? "text-slate-400" : "text-slate-600"}`}>
+                    <p
+                      className={`text-sm md:text-base mb-3 md:mb-4 ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}
+                    >
                       JNTUH University • 2019-2023
                     </p>
-                    <p className={`mt-4 ${isDarkMode ? "text-slate-300" : "text-slate-600"}`}>
+                    <p className={`text-sm md:text-base ${isDarkMode ? "text-slate-300" : "text-slate-600"}`}>
                       Focused on software engineering principles, data structures, algorithms, and modern web
                       technologies. Graduated with distinction and actively participated in coding competitions and tech
                       events.
@@ -477,22 +511,28 @@ export default function Portfolio() {
                 onMouseEnter={() => handleMouseEnter("My current role")}
                 onMouseLeave={handleMouseLeave}
               >
-                <CardContent className="p-8">
-                  <div className="flex items-start space-x-4">
-                    <div className={`p-3 rounded-full ${isDarkMode ? "bg-indigo-500/20" : "bg-indigo-100"}`}>
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-4">
+                    <div
+                      className={`flex-shrink-0 p-3 rounded-full self-start ${isDarkMode ? "bg-indigo-500/20" : "bg-indigo-100"}`}
+                    >
                       <Briefcase className={`w-6 h-6 ${isDarkMode ? "text-indigo-400" : "text-indigo-600"}`} />
                     </div>
-                    <div className="flex-1">
-                      <h3 className={`text-2xl font-semibold mb-2 ${isDarkMode ? "text-white" : "text-slate-900"}`}>
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className={`text-xl md:text-2xl font-semibold mb-2 ${isDarkMode ? "text-white" : "text-slate-900"}`}
+                      >
                         Full Stack Developer
                       </h3>
-                      <p className={`text-lg mb-1 ${isDarkMode ? "text-indigo-400" : "text-indigo-600"}`}>
+                      <p className={`text-base md:text-lg mb-1 ${isDarkMode ? "text-indigo-400" : "text-indigo-600"}`}>
                         Tech Solutions Inc.
                       </p>
-                      <p className={`mb-4 ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}>
+                      <p
+                        className={`text-sm md:text-base mb-3 md:mb-4 ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}
+                      >
                         2022 - Present • 2+ years
                       </p>
-                      <p className={`${isDarkMode ? "text-slate-300" : "text-slate-600"}`}>
+                      <p className={`text-sm md:text-base ${isDarkMode ? "text-slate-300" : "text-slate-600"}`}>
                         Developed and maintained multiple web applications using React, Node.js, and various databases.
                         Collaborated with cross-functional teams to deliver high-quality software solutions. Implemented
                         responsive designs and optimized application performance.
@@ -509,22 +549,28 @@ export default function Portfolio() {
                 onMouseEnter={() => handleMouseEnter("Where I started my journey")}
                 onMouseLeave={handleMouseLeave}
               >
-                <CardContent className="p-8">
-                  <div className="flex items-start space-x-4">
-                    <div className={`p-3 rounded-full ${isDarkMode ? "bg-blue-500/20" : "bg-blue-100"}`}>
+                <CardContent className="p-6 md:p-8">
+                  <div className="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-4">
+                    <div
+                      className={`flex-shrink-0 p-3 rounded-full self-start ${isDarkMode ? "bg-blue-500/20" : "bg-blue-100"}`}
+                    >
                       <Code2 className={`w-6 h-6 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`} />
                     </div>
-                    <div className="flex-1">
-                      <h3 className={`text-2xl font-semibold mb-2 ${isDarkMode ? "text-white" : "text-slate-900"}`}>
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className={`text-xl md:text-2xl font-semibold mb-2 ${isDarkMode ? "text-white" : "text-slate-900"}`}
+                      >
                         Junior Developer Intern
                       </h3>
-                      <p className={`text-lg mb-1 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`}>
+                      <p className={`text-base md:text-lg mb-1 ${isDarkMode ? "text-blue-400" : "text-blue-600"}`}>
                         StartUp Innovations
                       </p>
-                      <p className={`mb-4 ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}>
+                      <p
+                        className={`text-sm md:text-base mb-3 md:mb-4 ${isDarkMode ? "text-slate-400" : "text-slate-600"}`}
+                      >
                         2021 - 2022 • 6 months
                       </p>
-                      <p className={`${isDarkMode ? "text-slate-300" : "text-slate-600"}`}>
+                      <p className={`text-sm md:text-base ${isDarkMode ? "text-slate-300" : "text-slate-600"}`}>
                         Gained hands-on experience in web development, learned industry best practices, and contributed
                         to real-world projects. Worked closely with senior developers to understand software development
                         lifecycle.
@@ -552,19 +598,25 @@ export default function Portfolio() {
               Skills & Technologies
             </h2>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 md:gap-4">
               {skills.map((skill, index) => (
                 <div
                   key={skill}
                   onMouseEnter={() => handleMouseEnter(`I work with ${skill}`)}
                   onMouseLeave={handleMouseLeave}
-                  className={`p-4 rounded-xl backdrop-blur-md border transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 ${
+                  className={`p-3 md:p-4 rounded-xl backdrop-blur-md border transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 group ${
                     isDarkMode
                       ? "bg-slate-900/50 border-slate-700/50 hover:bg-slate-800/50"
                       : "bg-white/50 border-slate-200/50 hover:bg-white/80"
                   } cursor-pointer`}
                 >
-                  <p className={`text-center font-medium ${isDarkMode ? "text-slate-200" : "text-slate-700"}`}>
+                  <p
+                    className={`text-center font-medium text-xs md:text-sm transition-colors duration-300 ${
+                      isDarkMode
+                        ? "text-slate-200 group-hover:text-blue-400"
+                        : "text-slate-700 group-hover:text-blue-600"
+                    }`}
+                  >
                     {skill}
                   </p>
                 </div>
@@ -699,17 +751,17 @@ export default function Portfolio() {
       </footer>
 
       {/* Floating Contact Button */}
-      <div className="fixed bottom-8 left-8 z-50">
+      <div className="fixed bottom-6 md:bottom-8 right-6 md:right-8 z-50">
         <button
           onClick={() => setIsContactOpen(true)}
           onMouseEnter={() => handleMouseEnter("Let's get in touch!")}
           onMouseLeave={handleMouseLeave}
-          className={`group relative p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 ${
+          className={`group relative p-3 md:p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110 ${
             isDarkMode ? "bg-gradient-to-r from-blue-600 to-indigo-700" : "bg-gradient-to-r from-blue-600 to-indigo-700"
           }`}
         >
-          <MessageCircle className="w-6 h-6 text-white animate-pulse" />
-          <div className="absolute -top-2 -right-2 w-4 h-4 bg-green-400 rounded-full animate-ping"></div>
+          <MessageCircle className="w-5 h-5 md:w-6 md:h-6 text-white animate-pulse" />
+          <div className="absolute -top-1 -right-1 w-3 h-3 md:w-4 md:h-4 bg-green-400 rounded-full animate-ping"></div>
         </button>
       </div>
 
